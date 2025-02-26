@@ -140,3 +140,11 @@ kubectl create namespace datajobs
 kubectl apply -f job.yaml -n datajobs
 
 kubectl get jobs -n datajobs
+# check logs for specific job
+kubectl logs job/dataprocessingjob -n datajobs
+
+# find the actual pod name
+POD_NAME=$(kubectl get pods -n datajobs -l job-name=dataprocessingjob -o jsonpath='{.items[0].metadata.name}')
+
+# Then get the logs
+kubectl logs $POD_NAME -n datajobs
