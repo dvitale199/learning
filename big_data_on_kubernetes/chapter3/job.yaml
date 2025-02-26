@@ -1,0 +1,12 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: dataprocessingjob2
+spec:
+  template:
+    spec:
+      containers:
+      - name: dataprocessingjob
+        image: us-central1-docker.pkg.dev/genotools/jokeapi-repo/jokeapi-job:v1
+      restartPolicy: Never
+  backoffLimit: 4

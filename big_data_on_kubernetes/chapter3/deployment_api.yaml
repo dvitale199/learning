@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: jokeapi
-        image: dv199/jokeapi:v1
+        image: us-central1-docker.pkg.dev/genotools/jokeapi-repo/jokeapi:v1
         imagePullPolicy: Always
         ports:
         - containerPort: 8087 
