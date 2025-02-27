@@ -148,3 +148,28 @@ POD_NAME=$(kubectl get pods -n datajobs -l job-name=dataprocessingjob -o jsonpat
 
 # Then get the logs
 kubectl logs $POD_NAME -n datajobs
+
+
+
+####### CLEAN UP #######
+kubectl delete namespace jokeapi
+kubectl delete namespace datajobs
+kubectl delete namespace ingress-nginx
+kubectl delete deployments --all -n jokeapi
+kubectl delete services --all -n jokeapi
+kubectl delete jobs --all -n datajobs
+kubectl delete ingress --all -n jokeapi
+
+gcloud container clusters delete studycluster
+
+gcloud artifacts repositories delete jokeapi-repo \
+    --location=us-central1
+
+# verify deletion
+kubectl get namespaces
+kubectl get all --all-namespaces
+gcloud artifacts repositories list --location=us-central1
+gcloud container clusters list
+
+
+
